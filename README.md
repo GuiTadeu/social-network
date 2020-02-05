@@ -1,2 +1,0 @@
-# getout
-Social Network
