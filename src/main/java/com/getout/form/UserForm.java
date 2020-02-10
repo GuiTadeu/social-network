@@ -1,28 +1,25 @@
-package com.getout.po;
+package com.getout.form;
 
 import com.getout.model.User;
-import lombok.Getter;
 import lombok.Setter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 
-@Getter
 @Setter
-public class UserPO {
+public class UserForm {
 
     @Email(message = "Invalid Email")
     @NotBlank(message = "Email is Required")
     private String email;
 
-    @NotBlank(message = "Password is Required")
-    private String password;
-
     @NotBlank(message = "Name is Required")
     private String name;
 
+    @NotBlank(message = "Password is Required")
+    @Size(min = 10, message = "The minimum password length is 10 characters")
+    private String password;
+
     public User converter() {
-        return new User(email, new BCryptPasswordEncoder().encode(password), name);
+        return new User(email, name, password);
     }
 }

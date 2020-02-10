@@ -1,17 +1,20 @@
 package com.getout.validation;
 
+import lombok.Getter;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-public class FieldErrors {
+@Getter
+public class ApiErrors {
 
-    public static List<String> convertErrorsToJson(Errors errors) {
-        return errors.getAllErrors()
+    private List<String> errors;
+
+    public ApiErrors(Errors errors) {
+        this.errors = errors.getAllErrors()
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(toList());
