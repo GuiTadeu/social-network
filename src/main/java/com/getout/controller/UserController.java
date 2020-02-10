@@ -6,7 +6,7 @@ import com.getout.repository.UserRepository;
 import com.getout.validation.ApiErrors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -24,10 +24,10 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping("/create")
-    public ResponseEntity create(@Valid @RequestBody UserForm form, Errors errors, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity create(@Valid @RequestBody UserForm form, BindingResult result, UriComponentsBuilder uriBuilder) {
 
-        if(errors.hasErrors())
-            return new ResponseEntity(new ApiErrors(errors), BAD_REQUEST);
+        if(result.hasErrors())
+            return new ResponseEntity(new ApiErrors(result), BAD_REQUEST);
 
         User user = form.converter();
         userRepository.save(user);
