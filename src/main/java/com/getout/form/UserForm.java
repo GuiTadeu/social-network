@@ -17,9 +17,9 @@ public class UserForm {
 
     @NotBlank(message = "Password is Required")
     @Size(min = 10, message = "The minimum password length is 10 characters")
-    private String password;
+    private String plainPassword;
 
     public User converter() {
-        return new User(email, name, password);
+        return new User(email, name, plainPassword);
     }
 }
