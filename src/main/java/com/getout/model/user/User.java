@@ -1,7 +1,6 @@
 package com.getout.model.user;
 
 import lombok.Getter;
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -9,6 +8,7 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import static java.time.LocalDateTime.now;
 import static javax.persistence.EnumType.STRING;
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -21,8 +21,7 @@ public class User {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = now();
 
     @Email
     @NotBlank
@@ -39,6 +38,7 @@ public class User {
     @Enumerated(STRING)
     private Gender gender;
 
+    @Past
     @NotNull
     private LocalDate birthday;
 

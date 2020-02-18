@@ -24,6 +24,7 @@ public class UserCreateForm {
     @NotNull(message = "Gender is Required")
     private Gender gender;
 
+    @Past
     @NotNull(message = "Birthday is Required")
     private LocalDate birthday;
 
