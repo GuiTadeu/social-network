@@ -1,6 +1,7 @@
 package com.getout.model.user;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Getter
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
 
@@ -46,10 +48,14 @@ public class User {
      * @param plainPassword will be encrypted inside on constructor
      * @see #encryptPassword(String plainPassword)
      */
-    public User(String email, String name, String plainPassword, Gender gender, LocalDate birthday) {
+    public User(String email, String plainPassword) {
         this.email = email;
-        this.name = name;
         this.password = encryptPassword(plainPassword);
+    }
+
+    public User(String email, String name, String plainPassword, Gender gender, LocalDate birthday) {
+        this(email, plainPassword);
+        this.name = name;
         this.gender = gender;
         this.birthday = birthday;
     }

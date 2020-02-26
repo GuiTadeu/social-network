@@ -1,4 +1,4 @@
-package com.getout.form;
+package com.getout.form.user;
 
 import com.getout.model.user.Gender;
 import com.getout.model.user.User;
