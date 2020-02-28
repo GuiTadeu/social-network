@@ -1,4 +1,4 @@
-package com.getout.model.user;
+package com.getout.user;
 
 public enum Gender {
     MALE, FEMALE;

@@ -1,6 +1,7 @@
-package com.getout.form.user;
+package com.getout.user.form;
 
 import lombok.Getter;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -14,4 +15,8 @@ public class UserLoginForm {
 
     @NotBlank(message = "Password is Required")
     private String plainPassword;
+
+    public UsernamePasswordAuthenticationToken build() {
+        return new UsernamePasswordAuthenticationToken(this.email, this.plainPassword);
+    }
 }

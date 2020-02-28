@@ -1,7 +1,7 @@
-package com.getout.form.user;
+package com.getout.user.form;
 
-import com.getout.model.user.Gender;
-import com.getout.model.user.User;
+import com.getout.user.Gender;
+import com.getout.user.User;
 import lombok.Setter;
 
 import javax.validation.constraints.*;
