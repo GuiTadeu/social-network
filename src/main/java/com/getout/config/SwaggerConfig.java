@@ -22,7 +22,7 @@ public class SwaggerConfig {
     public Docket api() {
         return new Docket(SWAGGER_2)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.getout.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.getout"))
                 .paths(PathSelectors.any())
                 .build()
                 .apiInfo(apiInfo());
