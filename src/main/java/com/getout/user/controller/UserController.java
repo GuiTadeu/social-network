@@ -1,8 +1,9 @@
-package com.getout.controller;
+package com.getout.user.controller;
 
-import com.getout.form.UserCreateForm;
-import com.getout.model.user.User;
-import com.getout.repository.UserRepository;
+import com.getout.config.security.role.AllowZombie;
+import com.getout.user.User;
+import com.getout.user.UserRepository;
+import com.getout.user.form.UserCreateForm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,5 +22,11 @@ public class UserController {
         User user = form.converter();
         userRepository.save(user);
         return ResponseEntity.ok().build();
+    }
+
+    @AllowZombie
+    @GetMapping("/{id}/account")
+    public ResponseEntity accountDetails(@PathVariable Long id) {
+        return ResponseEntity.ok("Nothing Here...");
     }
 }
