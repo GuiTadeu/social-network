@@ -67,6 +67,10 @@ public class User implements UserDetails {
         this.role = ZOMBIE;
     }
 
+    public void setPassword(String plainPassword) {
+        this.password = encryptPassword(plainPassword);
+    }
+
     private String encryptPassword(String plainPassword) {
         return new BCryptPasswordEncoder().encode(plainPassword);
     }
