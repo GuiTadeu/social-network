@@ -67,8 +67,20 @@ public class User implements UserDetails {
         this.role = ZOMBIE;
     }
 
+    /**
+     * @param plainPassword will be encrypted inside on method
+     * @see #encryptPassword(String plainPassword)
+     */
+    public void setPassword(String plainPassword) {
+        this.password = encryptPassword(plainPassword);
+    }
+
     private String encryptPassword(String plainPassword) {
         return new BCryptPasswordEncoder().encode(plainPassword);
+    }
+
+    public boolean emailsIsEquals(String otherEmail) {
+        return email.equals(otherEmail);
     }
 
     @Override
