@@ -1,5 +1,6 @@
 package com.getout.user.passwordRecovery;
 
+import com.getout.user.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -12,7 +13,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @NoArgsConstructor
-public class TemporaryRecoveryCode {
+public class PasswordRecoveryCode {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
@@ -24,16 +25,17 @@ public class TemporaryRecoveryCode {
 
     @Getter
     @NotNull
-    private Long userId;
+    @ManyToOne
+    private User user;
 
     private LocalDateTime expiredAt = now().plusMinutes(5);
 
-    public TemporaryRecoveryCode(Integer code, Long userId) {
+    public PasswordRecoveryCode(Integer code, User user) {
         this.code = code;
-        this.userId = userId;
+        this.user = user;
     }
 
-    public boolean isValid() {
-        return now().isBefore(expiredAt) ? true : false;
+    public boolean isNotExpired() {
+        return now().isBefore(expiredAt);
     }
 }
